@@ -1,0 +1,9 @@
+
+N	java:S106"9Replace this use of System.out or System.err by a logger.(¥“Ÿµ
+Q	java:S125"<This block of commented-out lines of code should be removed.(ì˛ﬁê
+k
+java:S1989"PHandle the following exception that could be thrown by "getWriter": IOException.(Â ê⁄˚ˇˇˇˇ
+z
+java:S1989"_Handle the following exceptions that could be thrown by "doGet": ServletException, IOException.(óÙ÷¢¯ˇˇˇˇ
+S
+java:S1128">Remove this unused import 'javax.servlet.ServletOutputStream'.(©„Ô

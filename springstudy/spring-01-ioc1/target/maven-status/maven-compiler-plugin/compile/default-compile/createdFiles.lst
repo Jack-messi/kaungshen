@@ -1,0 +1,4 @@
+com\kuang\service\UserService.class
+com\kuang\dao\UserDao.class
+com\kuang\service\UserServiceImpl.class
+com\kuang\dao\UserDaoImpl.class

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuang.dao.BillMapper">
+    <select id="getAllBill" resultType="Bill">
+        select *
+        from mybatis.smbms_bill;
+    </select>
+
+    <select id="getBillCountByProviderId" resultType="int">
+        select count(*)
+        from mybatis.smbms_bill
+        where providerId = #{providerId}
+    </select>
+
+    <insert id="add" parameterType="Bill">
+        insert into mybatis.smbms_bill(id, billCode, productName, productDesc, productUnit, productCount, totalPrice,
+                                       isPayment, createdBy, creationDate, modifyBy, modifyDate, providerId)
+        values (#{id}, #{billCode}, #{productName}, #{productDesc}, #{productUnit}, #{productCount}, #{totalPrice},
+                #{isPayment}, #{createdBy}, #{creationDate}, #{modifyBy}, #{modifyDate}, #{providerId});
+    </insert>
+
+
+    <select id="getBillList" resultType="Bill">
+        select * from mybatis.smbms_bill
+        <where>
+            <if test="productName != null">
+                and productName like concat('%',#{productName},'%')
+            </if>
+            <if test="providerId != null">
+                and providerId like concat('%',#{providerId},'%')
+            </if>
+            <if test="isPayment != null">
+                and isPayment like concat('%',#{isPayment},'%')
+            </if>
+        </where>
+        limit #{startindex},#{pageSize}
+    </select>
+
+    <select id="getBillCount" resultType="int">
+        select count(1) as count from mybatis.smbms_bill b ,mybatis.smbms_provider p
+        <trim prefix="where b.providerId=p.id" >
+            <if test="productName != null">
+                and productName like concat('%',#{productName},'%')
+            </if>
+            <if test="providerId != null ">
+                and providerId=#{providerId}
+            </if>
+            <if test="isPayment != null">
+                and isPayment=#{isPayment}
+            </if>
+        </trim>
+    </select>
+
+</mapper>
